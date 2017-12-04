@@ -16,7 +16,13 @@ def load(filename):
     if os.path.isfile(filename+npext):
         out = np.load(filename+npext)
     else:
-        out = np.array([])
+        out = np.array([0])
     return out
 
-#def generateplot(
+def generateplot(timearray,dataarray,filename_plot):
+    fig = plt.figure()
+    plt.plot(timearray,dataarray,figure = fig) 
+    plt.ylabel("Price in USD")
+    plt.xlabel("Time Before Present")
+    plt.savefig('./Results/evol_conc_v'+str(vinit)+'a_'+str(a)+'.png')
+
