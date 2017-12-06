@@ -21,8 +21,20 @@ def load(filename):
 
 def generateplot(timearray,dataarray,filename_plot):
     fig = plt.figure()
+    if (dataarray.size > 2):
+        if (dataarray[-1]-dataarray[-2]) > 0:
+            c = 'g'
+        else:
+            c = 'r'
+    else:
+        c = 'b'
     plt.plot(timearray,dataarray,figure = fig) 
     plt.ylabel("Price in USD")
     plt.xlabel("Time Before Present")
-    plt.savefig('./Results/evol_conc_v'+str(vinit)+'a_'+str(a)+'.png')
+    plt.savefig(filename_plot)
+    return 1
 
+def displayimage(filename_plot):
+    os.system('sudo killall -9 fbi')
+    os.system('sudo fbi '+filename_plot)
+    
