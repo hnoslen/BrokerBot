@@ -1,23 +1,11 @@
 # Program to display market status and buy/sell status
 
-price_data_file_path = 'pricedata'
-npext = '.npy'
-points_to_save = 1000
+points_to_display = 1000
 plotfile_name = 'current_market.png'
 
 import matplotlib.pyplot as plt
 import numpy as np
-import os.path
-
-def save(arr, filename):
-    return np.save(filename,arr)
-
-def load(filename):
-    if os.path.isfile(filename+npext):
-        out = np.load(filename+npext)
-    else:
-        out = np.array([0])
-    return out
+import os
 
 def generateplot(timearray,dataarray,filename_plot):
     fig = plt.figure()
@@ -28,7 +16,7 @@ def generateplot(timearray,dataarray,filename_plot):
             c = 'r'
     else:
         c = 'b'
-    plt.plot(timearray,dataarray,figure = fig) 
+    plt.plot(timearray,dataarray,figure = fig)
     plt.ylabel("Price in USD")
     plt.xlabel("Time Before Present")
     plt.savefig(filename_plot)
@@ -37,4 +25,4 @@ def generateplot(timearray,dataarray,filename_plot):
 def displayimage(filename_plot):
     os.system('sudo killall -9 fbi')
     os.system('sudo fbi '+filename_plot)
-    
+
