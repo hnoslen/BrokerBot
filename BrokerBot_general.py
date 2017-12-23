@@ -42,6 +42,12 @@ def load(filename):
     return out
 
 # Functions for trend finding in data
-def linearTrend(arr):
+def linear_fit(arr):
 	x = np.linspace(-1*(arr.size-1),0,arr.size)
 	return np.polyfit(x,arr,1)
+def weights(f,length):
+    return np.cumsum(f(np.ones(length)))/length
+def weighted_fit(arr,weg,degree):
+    x = np.linspace(-1*(arr.size-1),0,arr.size)
+    return np.polyfit(x,arr,degree,None,False,weg)
+
